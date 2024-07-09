@@ -1,0 +1,20 @@
+{
+    "name": "bbaba/demo-php",
+    "description": "demo",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Bbaba\\DemoPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "bbabadara",
+            "email": "bbabadara@gmail.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^5.3",
+        "twbs/bootstrap-icons": "^1.11"
+    }
+}
