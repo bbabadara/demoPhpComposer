@@ -4,7 +4,11 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Bbaba\\DemoPhp\\": "src/"
+            "Bank\\App\\": "src/",
+            "Bank\\Models\\": "src/models/",
+            "Bank\\Controllers\\": "src/controllers/",
+            "Bank\\views\\comptes\\": "/views/comptes/index.html.php"
+
         }
     },
     "authors": [
