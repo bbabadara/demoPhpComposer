@@ -43,3 +43,4 @@ INSERT INTO compte (numero, solde,idcl) VALUES
 
 
 
+SELECT * FROM client cl JOIN compte c on cl.idcl=c.idcl WHERE cl.telephone ="772641040";
