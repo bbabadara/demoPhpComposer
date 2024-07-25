@@ -8,8 +8,15 @@ class CompteModel{
         $pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
         $result=$pdo->query($sql);
-        // var_dump($result->fetchAll(\PDO::FETCH_CLASS,CompteModel::class));
         return $result->fetchAll();
+    }
+    public function findByID(string $id){
+        $sql="SELECT * FROM client cl JOIN compte c on cl.idcl=c.idcl WHERE c.idc ='$id'";
+        $pdo=new \PDO('mysql:host=localhost;dbname=demophp;charset=utf8',"root","");
+        $pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
+        $result=$pdo->query($sql);
+        return $result->fetch();
     }
 
     public function addCompte(array $data){

@@ -6,8 +6,7 @@
         "psr-4": {
             "Bank\\App\\": "src/",
             "Bank\\Models\\": "src/models/",
-            "Bank\\Controllers\\": "src/controllers/",
-            "Bank\\views\\comptes\\": "/views/comptes/index.html.php"
+            "Bank\\Controllers\\": "src/controllers/"
 
         }
     },

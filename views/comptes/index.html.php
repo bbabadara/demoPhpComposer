@@ -26,7 +26,8 @@
                     <form method="get">
                         <div class="d-flex align-items-center p-2">
                             <label for="inputTel1" class="form-label  mx-3">Telephone</label>
-                            <input type="text" class="form-control" name="tel1" value="<?= isset($_REQUEST["tel1"]) ? $_REQUEST["tel1"] : '' ?>" id="inputTel1" />
+                            <input type="text" class="form-control" name="tel1" value="<?= $_REQUEST["tel1"]??''?>" id="inputTel1" />
+                            <input type="hidden" name="controller" value="compte">
                             <button type="submit" class="btn btn-primary mx-3" name="action" value="findclient" id="btnTel1">Ok</button>
 
                         </div>
@@ -35,12 +36,12 @@
                         <div class="row ">
                             <div class="form-group col-6  ">
                                 <label for="nom">Nom :</label>
-                                <input type="text" class="form-control " id="nom" name="nom1" value="<?= isset($client->nom) ? $client->nom : '' ?>" <?= empty($client) ? "" : "disabled" ?>>
+                                <input type="text" class="form-control " id="nom" name="nom1" value="<?= $client->nom??''?>" <?=$disabledClient?>>
                                 <div class="invalid-feedback"> </div>
                             </div>
                             <div class="form-group col-6">
                                 <label for="prenom">Prénom :</label>
-                                <input type="text" class="form-control " id="prenom" name="prenom1" value="<?= isset($client->prenom) ? $client->prenom : '' ?>" <?= empty($client) ? "" : "disabled" ?>>
+                                <input type="text" class="form-control " id="prenom" name="prenom1" value="<?= $client->prenom??''?>" <?=$disabledClient?>>
                                 <div class="invalid-feedback"> </div>
                             </div>
                         </div>
@@ -56,9 +57,10 @@
                                 <div class="invalid-feedback"> </div>
                             </div>
                         </div>
-                        <?= empty($client)? '': '<input type="hidden" name="key"'.'value='.$client->idcl.' >' ?>
-                        <?= empty($client)? '': '<input type="hidden" name="help"'.'value='.$client->telephone.' >' ?>
-                        <?= empty($client) && !isset($_REQUEST["tel"])? '<input type="hidden" name="telephone"'.'value='.$_REQUEST["tel1"].' >': '' ?>
+                        <input type="hidden" name="idcl" value="<?=$client->idcl??'0'?>" >
+                        <input type="hidden" name="telephone" value="<?=$client->telephone??''?>">
+                        <input type="hidden" name="help" value="<?=$_REQUEST["tel1"]??''?>">
+                        <input type="hidden" name="controller" value="compte">
                         <div class="container d-flex justify-content-end mt-3">
                             <button type="submit" class="btn btn-primary" name="action" value="addcompte" id="btnSave" <?= isset($_REQUEST["tel1"]) ? "" : "disabled" ?>>Enregistrer</button>
                         </div>
@@ -71,7 +73,8 @@
                     <form method="get">
                         <div class="d-flex align-items-center p-2">
                             <label for="inputTel" class="form-label  mx-3">Telephone</label>
-                            <input type="text" class="form-control" name="tel" id="inputTel" value="<?= isset($_REQUEST["tel"]) ? $_REQUEST["tel"] : '' ?>">
+                            <input type="text" class="form-control" name="tel" id="inputTel" value="<?=$_REQUEST["tel"]??'' ?>">
+                            <input type="hidden" name="controller" value="compte">
                             <button type="submit" class="btn btn-primary mx-3" name="action" value="findcompte" id="btnTel">Ok</button>
 
                         </div>
@@ -80,12 +83,12 @@
                     <div class="d-flex justify-content-around align-items-center">
                         <div class="form-group col-5">
                             <label for="nom">Nom :</label>
-                            <input type="text" class="form-control " id="nom" name="nom" value="<?= isset($comptes[0]->nom) ? $comptes[0]->nom : '' ?>" disabled>
+                            <input type="text" class="form-control " id="nom" name="nom" value="<?=$comptes[0]->nom??'' ?>" disabled>
                             <div class="invalid-feedback"> </div>
                         </div>
                         <div class="form-group col-5">
                             <label for="prenom">Prénom :</label>
-                            <input type="text" class="form-control" id="prenom" name="prenom" value="<?= isset($comptes[0]->prenom) ? $comptes[0]->prenom : "" ?>" disabled>
+                            <input type="text" class="form-control" id="prenom" name="prenom" value="<?=$comptes[0]->prenom??''?>" disabled>
                             <div class="invalid-feedback"> </div>
                         </div>
                     </div>
@@ -104,7 +107,7 @@
                                     <tr>
                                         <td><?= $compte->numero ?></td>
                                         <td><?= $compte->solde ?></td>
-                                        <td><a href="#">Voir trans.</a></td>
+                                        <td><a href=<?=WEBROOT."?controller=transaction&key=$compte->idc&action=liste"?>>Voir trans.</a></td>
                                     </tr>
                             <?php endforeach;
                             endif ?>
