@@ -18,6 +18,14 @@ class CompteModel{
         $result=$pdo->query($sql);
         return $result->fetch();
     }
+    public function findBynumero(string $numero){
+        $sql="SELECT * FROM compte WHERE numero ='$numero'";
+        $pdo=new \PDO('mysql:host=localhost;dbname=demophp;charset=utf8',"root","");
+        $pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
+         $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
+        $result=$pdo->query($sql);
+        return $result->fetch();
+    }
 
     public function addCompte(array $data){
         $pdo=new \PDO('mysql:host=localhost;dbname=demophp;charset=utf8',"root","");

@@ -3,7 +3,7 @@ namespace Bank\Models;
 class TransactionModel{
     
     public function findByComptesId(int $idc,string $type=""){
-        var_dump($idc);
+        // var_dump($idc);
         $sql="SELECT * FROM transaction WHERE idc='$idc'";
         if($type!=""){
             $sql.=" AND type='$type'";

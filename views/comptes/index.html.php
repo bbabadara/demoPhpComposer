@@ -1,3 +1,27 @@
+<?php
+$recup=[];
+$client=isset($_SESSION["client"])?$_SESSION["client"]:[];
+var_dump($client);
+unset($_SESSION["client"]);
+if(!empty($client)){
+    $recup =[
+    "nom1"=> $client["nom"],
+    "prenom1"=> $client["prenom"],
+    "tel1"=>$client["telephone"],
+    "idcl"=>$client["idcl"]
+];
+}
+
+
+if (isset($_REQUEST["show"]) ) {
+    var_dump($_SESSION["post"]);
+if ($_REQUEST["show"]=="notValid") {
+         $recup=$_SESSION["post"];
+    unset($_SESSION["post"]);
+    } 
+}
+var_dump($recup);
+?>
 <!doctype html>
 <html lang="en">
 
@@ -26,41 +50,48 @@
                     <form method="get">
                         <div class="d-flex align-items-center p-2">
                             <label for="inputTel1" class="form-label  mx-3">Telephone</label>
-                            <input type="text" class="form-control" name="tel1" value="<?= $_REQUEST["tel1"]??''?>" id="inputTel1" />
+                            <input type="text" class="form-control <?=isset($errors["tel1"])?"is-invalid":""?>" name="tel1" value="<?= $recup["tel1"]??''?>" id="inputTel1" />
                             <input type="hidden" name="controller" value="compte">
                             <button type="submit" class="btn btn-primary mx-3" name="action" value="findclient" id="btnTel1">Ok</button>
-
                         </div>
+                        <div class="div-error"><?=$errors["tel1"]??''?></div>
+
                     </form>
                     <form action="" method="post">
                         <div class="row ">
                             <div class="form-group col-6  ">
                                 <label for="nom">Nom :</label>
-                                <input type="text" class="form-control " id="nom" name="nom1" value="<?= $client->nom??''?>" <?=$disabledClient?>>
-                                <div class="invalid-feedback"> </div>
+                                <input type="text" class="form-control " id="nom" name="nom1" value="<?=$recup["nom1"]??''?> "   <?=$disabledClient?>>
+                                <div class="div-error"> <?=$errors["nom1"]??''?></div>
                             </div>
                             <div class="form-group col-6">
                                 <label for="prenom">Prénom :</label>
-                                <input type="text" class="form-control " id="prenom" name="prenom1" value="<?= $client->prenom??''?>" <?=$disabledClient?>>
-                                <div class="invalid-feedback"> </div>
+                                <input type="text" class="form-control " id="prenom" name="prenom1" value="<?=$recup["prenom1"]??''?> "  <?=$disabledClient?>>
+                                <div class="div-error"><?=$errors["prenom1"]??''?> </div>
                             </div>
+                            <!-- <div class="form-group col-6">
+                                <label for="prenom">telphone:</label>
+                                <input type="text" class="form-control " id="telclient" name="telclient" value="<?= $client->telephone??''?>" <?=$disabledClient?>>
+                                <div class="div-error"><?=$errors["telclient"]??''?> </div>
+                            </div> -->
                         </div>
                         <div class="row ">
                             <div class="form-group col-6  ">
                                 <label for="nom">Numero :</label>
-                                <input type="text" class="form-control " id="nom" name="numero">
-                                <div class="invalid-feedback"> </div>
+                                <input type="text" class="form-control " id="nom" value="<?= $recup["numero"]??''?>" name="numero">
+                                <div class="div-error"><?=$errors["numero"]??''?> </div>
                             </div>
                             <div class="form-group col-6">
                                 <label for="prenom">Solde :</label>
-                                <input type="text" class="form-control " id="solde" name="solde">
-                                <div class="invalid-feedback"> </div>
+                                <input type="text" class="form-control " id="solde" name="solde" value="<?= $recup["solde"]??''?>">
+                                <div class="div-error"> <?=$errors["solde"]??''?></div>
                             </div>
                         </div>
                         <input type="hidden" name="idcl" value="<?=$client->idcl??'0'?>" >
-                        <input type="hidden" name="telephone" value="<?=$client->telephone??''?>">
+                        <input type="hidden" name="telephone" value="<?=$recup["tel1"]??''?>">
                         <input type="hidden" name="help" value="<?=$_REQUEST["tel1"]??''?>">
                         <input type="hidden" name="controller" value="compte">
+                        
                         <div class="container d-flex justify-content-end mt-3">
                             <button type="submit" class="btn btn-primary" name="action" value="addcompte" id="btnSave" <?= isset($_REQUEST["tel1"]) ? "" : "disabled" ?>>Enregistrer</button>
                         </div>
@@ -84,12 +115,12 @@
                         <div class="form-group col-5">
                             <label for="nom">Nom :</label>
                             <input type="text" class="form-control " id="nom" name="nom" value="<?=$comptes[0]->nom??'' ?>" disabled>
-                            <div class="invalid-feedback"> </div>
+                            <div class="div-error"> </div>
                         </div>
                         <div class="form-group col-5">
                             <label for="prenom">Prénom :</label>
                             <input type="text" class="form-control" id="prenom" name="prenom" value="<?=$comptes[0]->prenom??''?>" disabled>
-                            <div class="invalid-feedback"> </div>
+                            <div class="div-error"> </div>
                         </div>
                     </div>
 
