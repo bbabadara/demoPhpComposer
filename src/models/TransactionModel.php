@@ -4,11 +4,11 @@ class TransactionModel{
     
     public function findByComptesId(int $idc,string $type=""){
         // var_dump($idc);
-        $sql="SELECT * FROM transaction WHERE idc='$idc'";
+        $sql="SELECT * FROM transaction t JOIN typetransaction tt ON t.idtt = tt.idtt WHERE idc='$idc'";
         if($type!=""){
-            $sql.=" AND type='$type'";
+            $sql.=" AND libtt='$type'";
             }
-        $pdo=new \PDO('mysql:host=localhost;dbname=demophp;charset=utf8',"root","");
+        $pdo=new \PDO('mysql:host=localhost;dbname=demophp1;charset=utf8',"root","");
         $pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
         $result=$pdo->query($sql);
@@ -22,7 +22,7 @@ class TransactionModel{
          $sql2 ="UPDATE `compte` SET `solde` = `solde`".$op.":montant WHERE `compte`.`idc` = :idc";
           
             try {
-                  $pdo=new \PDO('mysql:host=localhost;dbname=demophp;charset=utf8',"root","");
+                  $pdo=new \PDO('mysql:host=localhost;dbname=demophp1;charset=utf8',"root","");
                 $pdo->beginTransaction();
                 // Insertion dans la table Transaction
                 $stmt1= $pdo->prepare($sql1);

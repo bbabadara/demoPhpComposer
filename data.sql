@@ -1,6 +1,6 @@
 --Creation Base de donnee
-CREATE DATABASE IF NOT EXISTS `demophp` ;
-USE `demophp`;
+CREATE DATABASE IF NOT EXISTS `demophp1` ;
+USE `demophp1`;
 
 -- Table client
 CREATE TABLE client (
@@ -30,7 +30,7 @@ CREATE TABLE compte (
 -- Table typeTransaction
 CREATE TABLE typeTransacton (
     idtt INT PRIMARY KEY AUTO_INCREMENT,
-    libtt VARCHAR(50) NOT NULL,  
+    libtt VARCHAR(50) NOT NULL 
 );
 
 -- Table transaction

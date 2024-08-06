@@ -3,24 +3,24 @@ namespace Bank\Models;
 class CompteModel{
 
     public function findByTelephone(string $tel){
-        $sql="SELECT * FROM client cl JOIN compte c on cl.idcl=c.idcl WHERE cl.telephone ='$tel'";
-        $pdo=new \PDO('mysql:host=localhost;dbname=demophp;charset=utf8',"root","");
+        $sql="SELECT * FROM client cl JOIN compte c on cl.idcl=c.idcl JOIN typecompte tc ON c.idtc = tc.idtc WHERE cl.telephone ='$tel'";
+        $pdo=new \PDO('mysql:host=localhost;dbname=demophp1;charset=utf8',"root","");
         $pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
         $result=$pdo->query($sql);
         return $result->fetchAll();
     }
     public function findByID(string $id){
-        $sql="SELECT * FROM client cl JOIN compte c on cl.idcl=c.idcl WHERE c.idc ='$id'";
-        $pdo=new \PDO('mysql:host=localhost;dbname=demophp;charset=utf8',"root","");
+        $sql="SELECT * FROM client cl JOIN compte c ON cl.idcl = c.idcl JOIN typecompte tc ON c.idtc = tc.idtc WHERE c.idc = '$id'";
+        $pdo=new \PDO('mysql:host=localhost;dbname=demophp1;charset=utf8',"root","");
         $pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
         $result=$pdo->query($sql);
         return $result->fetch();
     }
     public function findBynumero(string $numero){
-        $sql="SELECT * FROM compte WHERE numero ='$numero'";
-        $pdo=new \PDO('mysql:host=localhost;dbname=demophp;charset=utf8',"root","");
+        $sql="SELECT * FROM compte JOIN typecompte tc ON c.idtc = tc.idtc WHERE numero ='$numero'";
+        $pdo=new \PDO('mysql:host=localhost;dbname=demophp1;charset=utf8',"root","");
         $pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
          $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE,\PDO::FETCH_OBJ);
         $result=$pdo->query($sql);
@@ -28,7 +28,7 @@ class CompteModel{
     }
 
     public function addCompte(array $data){
-        $pdo=new \PDO('mysql:host=localhost;dbname=demophp;charset=utf8',"root","");
+        $pdo=new \PDO('mysql:host=localhost;dbname=demophp1;charset=utf8',"root","");
         $sql = "INSERT INTO compte (numero, solde,idcl) VALUES (:numero, :solde, :idcl)";
         $stmt= $pdo->prepare($sql);
         $stmt->execute($data);
@@ -38,7 +38,7 @@ class CompteModel{
         $sql2 = "INSERT INTO compte (numero, solde,idcl) VALUES (:numero, :solde, :idcl)";
       
         try {
-              $pdo=new \PDO('mysql:host=localhost;dbname=demophp;charset=utf8',"root","");
+              $pdo=new \PDO('mysql:host=localhost;dbname=demophp1;charset=utf8',"root","");
             $pdo->beginTransaction();
             // Insertion dans la table client
             $stmt1= $pdo->prepare($sql1);

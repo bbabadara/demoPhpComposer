@@ -1,21 +1,24 @@
 <?php
-
 namespace Bank\Controllers;
 
 use Bank\Models\ClientModel;
 use Bank\Models\CompteModel;
+use Bank\Models\TypeCompteModel;
 
 class CompteController
 {
     private ClientModel $clientModel;
     private CompteModel $compteModel;
+    private TypeCompteModel $typeCompteModel;
     public function __construct()
     {
         $this->compteModel = new CompteModel;
         $this->clientModel = new ClientModel;
+        $this->typeCompteModel=new TypeCompteModel;
     }
     public function index()
     {
+        $typesCompte=$this->typeCompteModel->findAll();
         $disabledClient = "";
         $errors = [];
         if (isset($_REQUEST["action"])) {

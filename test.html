@@ -13,110 +13,43 @@
 </head>
 
 <body>
-    <header>
-        <!-- place navbar here -->
-    </header>
-    <main>
-        <div class="container d-flex justify-content-center align-items-center ">
-            <h1>Transactions</h1>
-        </div>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <a href="/"
+                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline">Menu</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+                        id="menu">
+                        <li>
+                            <a href="" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Comptes</span> </a>
+                        </li>
 
-        <div class="container d-flex align-items-md-center justify-content-around mt-2 ">
-            <div class="container col-6">
-                <div class="container shadow p-1 mt-3 mb-3  rounded">
-                    <div class="container  p-2">
-                        <p>Nom: <span>Badara</span></p>
-                        <p>Prenom: <span>Ba</span></p>
-                    </div>
-                    <form method="get">
-                        <div class="d-flex align-items-center p-2">
-                            <label for="inputTel" class="form-label  mx-3">Type</label>
-                            <select class="form-select" aria-label="Default select example" name="type" id="selectType">
-                                <option value="0">Selectionner le type</option>
-                                <option value="1">Depot</option>
-                                <option value="2">Retrait</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary mx-3" name="action" value="findcompte"
-                                id="btnTel">Ok</button>
+                        <li>
+                            <a href="#" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Ressource</span></a>
+                        </li>
 
-                        </div>
-                    </form>
+                        <li>
+                            <a href="#submenu3"> <i class="fs-4 bi-grid"></i> <span
+                                    class="ms-1 d-none d-sm-inline">Securite</span> </a>
 
-                    <table class="table table-bordered table-hover mt-3">
-                        <thead>
-                            <tr>
+                        </li>
 
-                                <th scope="col">Date</th>
-                                <th scope="col">Montant (FCFA)</th>
-                                <th scope="col">Type</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tBody">
-                            <?php if (isset($transactions)) : foreach ($transactions as $transaction) : ?>
-                            <tr>
-                                <td>
-                                    <?= $$transaction->datet ?>
-                                </td>
-                                <td>
-                                    <?= $$transaction->montant ?>
-                                </td>
-                                <td>
-                                    <?= $$transaction->type ?>
-                                </td>
-                            </tr>
-                            <?php endforeach;
-                            endif ?>
-                        </tbody>
-                    </table>
-                    <nav aria-label="..." class="d-flex align-items-center justify-content-center">
-                        <ul class="pagination" id="pagination">
-
-                        </ul>
-                    </nav>
+                    </ul>
                 </div>
-
             </div>
 
-            <div class="container col-6">
-                <div class="container shadow p-3  mb-3  rounded">
-                    <div class="container  p-2">
-                        <p>Numero: <span>CPT005</span></p>
-                        <p>Solde: <span>2356799 FCFA</span></p>
-                    </div>
-
-                    <form action="" method="post">
-                        <div class=" d-flex flex-column align-items-center justify-content-around">
-                            <div class="d-flex align-items-center col-8">
-                                <label for="inputTel" class="form-label  mx-3">Type:</label>
-                                <select class="form-select" aria-label="Default select example" name="type"
-                                    id="selectType">
-                                    <option value="0">Selectionner le type</option>
-                                    <option value="1">Depot</option>
-                                    <option value="2">Retrait</option>
-                                </select>
-
-                            </div>
-                            <div class="d-flex align-items-center col-8 mt-3">
-                                <label for="prenom" class="form-label mx-1">Prénom:</label>
-                                <input type="text" class="form-control " id="prenom" name="prenom1"
-                                    value="<?= $client->prenom??''?>">
-                                <div class="invalid-feedback"> </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-2 col-4" name="action"
-                                value="addTransaction" id="btnSave">Enregistrer</button>
-
-                        </div>
-                    </form>
-
-                </div>
-
+            <div class="col py-3">
+                Content area...
             </div>
         </div>
-        </div>
-    </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
+    </div>
+
+
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
